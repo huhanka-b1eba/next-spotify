@@ -3,6 +3,7 @@ import styles from './Sidebar.module.scss'
 import Link from 'next/link'
 import { Home, Library, Search } from 'lucide-react'
 import { Logo } from '@/shared/Logo'
+import { Avatar } from '@/shared/Avatar'
 
 const Sidebar = () => {
   return (
@@ -38,7 +39,13 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <div className={styles.profile}>Profile</div>
+      <div className={styles['profile']}>
+        <Avatar />
+        <div className={styles['profile-name']}>
+          <span>Тулыбаев Айгиз</span>
+          <div className={styles['profile-status']}>Trial</div>
+        </div>
+      </div>
     </aside>
   )
 }

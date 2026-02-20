@@ -1,7 +1,7 @@
-import React from 'react'
+import styles from './Logo.module.scss'
 
 const Logo = () => {
-  return <div>Spotify</div>
+  return <div className={styles['logo']}>Spotify</div>
 }
 
 export default Logo
