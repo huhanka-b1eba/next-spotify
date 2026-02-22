@@ -2,9 +2,8 @@ import React from 'react'
 import styles from './Sidebar.module.scss'
 import Link from 'next/link'
 import { Home, Library, Search } from 'lucide-react'
-import { Logo } from '@/shared/Logo'
-import { Avatar } from '@/shared/Avatar'
-import { ProfileSidebar } from '@/shared/ProfileSidebar'
+import { ProfileSidebar } from '@/widgets/profile-sidebar'
+import { Logo } from '@/shared/ui/logo'
 
 const Sidebar = () => {
   const sidebarLinks = [
@@ -34,7 +33,7 @@ const Sidebar = () => {
         <ul className={styles['nav-list']}>
           {sidebarLinks.map((elem, index) => (
             <li key={index} className={styles['nav-item']}>
-              <Link className={styles['nav-link']} href="#">
+              <Link className={styles['nav-link']} href={elem.href}>
                 <span className={styles['nav-icon']} aria-hidden>
                   <elem.icon size={22} />
                 </span>
