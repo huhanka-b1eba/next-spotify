@@ -5,17 +5,17 @@ import { inter } from '@/app/fonts/inter'
 import { montserrat } from '@/app/fonts/montserrat'
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode
+    children: React.ReactNode
 }>) {
-  return (
-    <html lang="ru">
-      <body className={`${inter.variable}  ${montserrat.variable}`}>
-        <Providers>
-          <AppLayout>{children}</AppLayout>
-        </Providers>
-      </body>
-    </html>
-  )
+    return (
+        <html lang="ru">
+            <body className={`${inter.variable}  ${montserrat.variable}`}>
+                <Providers>
+                    <AppLayout>{children}</AppLayout>
+                </Providers>
+            </body>
+        </html>
+    )
 }
