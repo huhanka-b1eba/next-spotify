@@ -1,0 +1,222 @@
+.player-bar {
+  align-items: center;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  color: #fff;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(240px, 1fr) minmax(360px, 1.2fr) minmax(220px, 0.8fr);
+  padding: 12px 20px;
+}
+
+.section {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  min-width: 0;
+}
+
+.track-cover {
+  background: var(--color-muted);
+  border-radius: 6px;
+  height: 52px;
+  width: 52px;
+}
+
+.track-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.track-title {
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-artist {
+  color: rgb(255 255 255 / 60%);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.controls-row {
+  display: flex;
+  gap: 12px;
+}
+
+.control-button {
+  background: transparent;
+  border: none;
+  color: rgb(255 255 255 / 70%);
+  cursor: pointer;
+  display: inline-flex;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  width: 32px;
+}
+
+.control-button:hover,
+.control-button:focus-visible {
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.control-button svg {
+  fill: none;
+  height: 20px;
+  stroke: currentcolor;
+  width: 20px;
+}
+
+.play-button {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease;
+  width: 38px;
+}
+
+.play-button:hover,
+.play-button:focus-visible {
+  outline: none;
+  transform: scale(1.06);
+}
+
+.play-button svg {
+  fill: none;
+  height: 20px;
+  stroke: currentcolor;
+  width: 20px;
+}
+
+.progress-row {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto 1fr auto;
+  width: 100%;
+}
+
+.time-label {
+  color: rgb(255 255 255 / 55%);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.progress-bar {
+  background: rgb(255 255 255 / 15%);
+  border-radius: 999px;
+  height: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  background: #1db954;
+  border-radius: 999px;
+  display: block;
+  height: 100%;
+  width: 35%;
+}
+
+.extras {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  color: rgb(255 255 255 / 70%);
+  cursor: pointer;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  padding: 0;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  width: 28px;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.icon-button svg {
+  fill: none;
+  height: 18px;
+  stroke: currentcolor;
+  width: 18px;
+}
+
+.volume-row {
+  display: flex;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.volume-bar {
+  background: rgb(255 255 255 / 15%);
+  margin-top: 6px;
+  border-radius: 999px;
+  height: 4px;
+  overflow: hidden;
+  position: relative;
+  width: 100px;
+}
+
+.volume-fill {
+  background: rgb(255 255 255 / 70%);
+  border-radius: 999px;
+  display: block;
+  height: 100%;
+  width: 60%;
+}
+
+@media (width <= 960px) {
+  .player-bar {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .section {
+    justify-content: center;
+  }
+
+  .extras {
+    justify-content: center;
+  }
+}
