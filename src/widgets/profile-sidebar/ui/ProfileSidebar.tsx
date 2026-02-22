@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Avatar } from '@/shared/Avatar'
+import { Avatar } from '@/shared/ui/avatar'
 import styles from './ProfileSidebar.module.scss'
 
 type ProfileState = 'Trial' | 'Pro' | 'Admin'

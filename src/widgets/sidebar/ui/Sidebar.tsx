@@ -1,29 +1,33 @@
+'use client'
+
 import React from 'react'
 import styles from './Sidebar.module.scss'
 import Link from 'next/link'
 import { Home, Library, Search } from 'lucide-react'
-import { Logo } from '@/shared/Logo'
-import { Avatar } from '@/shared/Avatar'
-import { ProfileSidebar } from '@/shared/ProfileSidebar'
+import { ProfileSidebar } from '@/widgets/profile-sidebar'
+import { Logo } from '@/shared/ui/logo'
+import { usePathname } from 'next/navigation'
+
+const sidebarLinks = [
+  {
+    name: 'Поиск',
+    icon: Search,
+    href: '/search',
+  },
+  {
+    name: 'Главная',
+    icon: Home,
+    href: '/',
+  },
+  {
+    name: 'Библиотека',
+    icon: Library,
+    href: '/library',
+  },
+]
 
 const Sidebar = () => {
-  const sidebarLinks = [
-    {
-      name: 'Поиск',
-      icon: Search,
-      href: '/',
-    },
-    {
-      name: 'Главная',
-      icon: Home,
-      href: '/search',
-    },
-    {
-      name: 'Библиотека',
-      icon: Library,
-      href: '/library',
-    },
-  ]
+  const path = usePathname()
 
   return (
     <aside className={styles.sidebar}>
@@ -34,7 +38,10 @@ const Sidebar = () => {
         <ul className={styles['nav-list']}>
           {sidebarLinks.map((elem, index) => (
             <li key={index} className={styles['nav-item']}>
-              <Link className={styles['nav-link']} href="#">
+              <Link
+                className={`${styles[`nav-link`]} ${path === elem.href ? styles.active : ''}`}
+                href={elem.href}
+              >
                 <span className={styles['nav-icon']} aria-hidden>
                   <elem.icon size={22} />
                 </span>

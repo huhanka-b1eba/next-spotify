@@ -10,5 +10,10 @@ body {
   margin: 0;
   background: var(--color-bg);
   color: var(--color-text-primary);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1,
+h2 {
+  font-family: var(--font-montserrat);
 }
