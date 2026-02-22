@@ -2,6 +2,7 @@ import { Play } from 'lucide-react'
 import styles from './HomePage.module.scss'
 import { getDayPhrase } from '@/shared/lib/dayPhrase'
 import { quickMixes, trending } from '@/entities/playlist/model/mock'
+import Link from 'next/link'
 
 export const HomePage = () => {
   const phrase = getDayPhrase()
@@ -26,12 +27,17 @@ export const HomePage = () => {
         </div>
         <div className={styles['quick-grid']}>
           {quickMixes.map((mix) => (
-            <article key={mix.id} className={styles['quick-card']}>
+            <Link
+              className={styles['quick-card']}
+              key={mix.id}
+              href={`/playlist/${mix.id}`}
+              passHref
+            >
               <div>
                 <h3>{mix.title}</h3>
                 <p>{mix.subtitle}</p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -42,13 +48,18 @@ export const HomePage = () => {
         </div>
         <div className={styles['trending-list']}>
           {trending.map((item, index) => (
-            <article key={item.id} className={styles['trend-item']}>
+            <Link
+              key={item.id}
+              className={styles['trend-item']}
+              href={`/playlist/${item.id}`}
+              passHref
+            >
               <span className={styles.rank}>{String(index + 1).padStart(2, '0')}</span>
               <div>
                 <h3>{item.title}</h3>
                 <p>{item.listeners}</p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
