@@ -31,9 +31,9 @@ const Sidebar = () => {
 
     return (
         <aside className={styles.sidebar}>
-            <div className={styles.brand}>
+            <Link className={styles.brand} href="/">
                 <Logo />
-            </div>
+            </Link>
             <nav className={styles.nav} aria-label="Основная навигация">
                 <ul className={styles['nav-list']}>
                     {sidebarLinks.map((elem, index) => (

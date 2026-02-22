@@ -1,0 +1,176 @@
+.page {
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100%;
+    padding: 24px 28px 36px;
+}
+
+.hero {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 180px minmax(0, 1fr);
+    margin-bottom: 28px;
+}
+
+.cover {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(145deg, #1f1f1f 0%, #292929 100%);
+    border: 1px solid #2f2f2f;
+    border-radius: 14px;
+    width: 100%;
+}
+
+.meta {
+    align-self: end;
+}
+
+.meta h1 {
+    color: #fff;
+    font-size: clamp(32px, 6vw, 54px);
+    line-height: 1.02;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.description {
+    color: var(--color-muted);
+    margin: 12px 0 0;
+    max-width: 580px;
+}
+
+.actions {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.play-button {
+    align-items: center;
+    background: var(--color-active);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: #07130a;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 700;
+    gap: 8px;
+    padding: 10px 16px;
+}
+
+.stats {
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.section h2 {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 0 14px;
+}
+
+.table {
+    background: #171717;
+    border: 1px solid #262626;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.head,
+.row {
+    align-items: center;
+    column-gap: 14px;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 2fr) minmax(0, 1.4fr) 44px;
+    padding: 10px 14px;
+}
+
+.head {
+    border-bottom: 1px solid #262626;
+    color: var(--color-muted);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.duration-icon {
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.row {
+    border-bottom: 1px solid #222;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.row:hover {
+    background: #1c1c1c;
+}
+
+.index {
+    color: var(--color-muted);
+    font-size: 13px;
+}
+
+.track h3 {
+    color: #fff;
+    font-size: 15px;
+    margin: 0;
+}
+
+.track p {
+    color: var(--color-muted);
+    font-size: 13px;
+    margin: 4px 0 0;
+}
+
+.album,
+.duration {
+    color: var(--color-muted);
+    font-size: 13px;
+    margin: 0;
+}
+
+.duration {
+    text-align: right;
+}
+
+@media (width <= 900px) {
+    .hero {
+        grid-template-columns: 120px minmax(0, 1fr);
+    }
+
+    .head,
+    .row {
+        grid-template-columns: 30px minmax(0, 1fr) 70px;
+    }
+
+    .head span:nth-child(3),
+    .row .album {
+        display: none;
+    }
+}
+
+@media (width <= 760px) {
+    .page {
+        padding: 16px;
+    }
+
+    .hero {
+        gap: 14px;
+        grid-template-columns: 90px minmax(0, 1fr);
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .section h2 {
+        font-size: 20px;
+    }
+}

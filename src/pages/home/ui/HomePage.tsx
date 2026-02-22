@@ -1,24 +1,22 @@
-import { Play } from 'lucide-react'
 import styles from './HomePage.module.scss'
 import { getDayPhrase } from '@/shared/lib/dayPhrase'
 import { quickMixes, trending } from '@/entities/playlist/model/mock'
 import Link from 'next/link'
+import ButtonListen from '@/shared/ui/buttonListen/ui/ButtonListen'
+import Kicker from '@/shared/ui/kicker/ui/Kicker'
 
 export const HomePage = () => {
     const phrase = getDayPhrase()
 
     return (
         <div className={styles.home}>
-            <p className={styles.kicker}>Главная</p>
+            <Kicker text="Главная" />
             <section className={styles.hero}>
                 <h1 className={styles.title}>{phrase}</h1>
                 <p className={styles.subtitle}>
                     Собрали персональную подборку на основе твоих прослушиваний.
                 </p>
-                <button className={styles['button-primary']} type="button">
-                    <Play size={16} />
-                    Слушать
-                </button>
+                <ButtonListen text="Слушать" />
             </section>
 
             <section className={styles.section} aria-labelledby="quick-mixes-title">
