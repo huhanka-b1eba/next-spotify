@@ -11,7 +11,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${inter.className}  ${montserrat.className}`}>
+      <body className={`${inter.variable}  ${montserrat.variable}`}>
         <Providers>
           <AppLayout>{children}</AppLayout>
         </Providers>

@@ -89,6 +89,10 @@
     transform 0.2s ease;
 }
 
+.nav-link.active {
+  opacity: 1;
+}
+
 .nav-link:hover,
 .nav-link:focus-visible {
   opacity: 1;
