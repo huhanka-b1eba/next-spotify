@@ -1,20 +1,7 @@
 import { Play } from 'lucide-react'
 import styles from './HomePage.module.scss'
 import { getDayPhrase } from '@/shared/lib/dayPhrase'
-
-const quickMixes = [
-  { title: 'На повторе', subtitle: 'Твои любимые треки за неделю' },
-  { title: 'Вечерний поток', subtitle: 'Мягкая электроника и инди' },
-  { title: 'Новые релизы', subtitle: 'Свежие треки от любимых артистов' },
-  { title: 'Спокойный фокус', subtitle: 'Музыка для работы и концентрации' },
-]
-
-const trending = [
-  { title: 'Инди сегодня', listeners: '2.3M слушателей' },
-  { title: 'Поп-волна', listeners: '1.8M слушателей' },
-  { title: 'Хип-хоп поток', listeners: '1.5M слушателей' },
-  { title: 'Lo-Fi утро', listeners: '980K слушателей' },
-]
+import { quickMixes, trending } from '@/entities/playlist/model/mock'
 
 export const HomePage = () => {
   const phrase = getDayPhrase()
@@ -39,7 +26,7 @@ export const HomePage = () => {
         </div>
         <div className={styles['quick-grid']}>
           {quickMixes.map((mix) => (
-            <article key={mix.title} className={styles['quick-card']}>
+            <article key={mix.id} className={styles['quick-card']}>
               <div>
                 <h3>{mix.title}</h3>
                 <p>{mix.subtitle}</p>
@@ -55,7 +42,7 @@ export const HomePage = () => {
         </div>
         <div className={styles['trending-list']}>
           {trending.map((item, index) => (
-            <article key={item.title} className={styles['trend-item']}>
+            <article key={item.id} className={styles['trend-item']}>
               <span className={styles.rank}>{String(index + 1).padStart(2, '0')}</span>
               <div>
                 <h3>{item.title}</h3>
