@@ -1,5 +1,15 @@
-import { HomePage } from '@/app/pages/home'
+import { HomePage } from '@/pages/home'
+import { Metadata } from 'next'
+import { getQuickMixes } from '@/features/ home-playlists/api/getQuickMixes'
+import { getTrending } from '@/features/ home-playlists/api/getTrending'
 
-export default function Home() {
-  return <HomePage />
+export const metadata: Metadata = {
+    title: 'Spotify',
+    description: 'Сервис для прослушивания музыки',
+}
+
+export default async function Home() {
+    const [quickMixes, trending] = await Promise.all([getQuickMixes(), getTrending()])
+
+    return <HomePage quickMixes={quickMixes} trending={trending} />
 }
