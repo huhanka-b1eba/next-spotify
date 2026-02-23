@@ -4,4 +4,6 @@ export interface Track {
     artist: string
     album: string
     duration: string
+    cover?: string
+    preview?: string
 }
