@@ -1,11 +1,16 @@
 import styles from './HomePage.module.scss'
 import { getDayPhrase } from '@/shared/lib/dayPhrase'
-import { quickMixes, trending } from '@/entities/playlist/model/mock'
 import Link from 'next/link'
 import ButtonListen from '@/shared/ui/buttonListen/ui/ButtonListen'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
+import { Playlist } from '@/entities/playlist/model/type'
 
-export const HomePage = () => {
+interface HomePageProps {
+    quickMixes: Playlist[]
+    trending: Playlist[]
+}
+
+export const HomePage = ({ quickMixes, trending }: HomePageProps) => {
     const phrase = getDayPhrase()
 
     return (
@@ -32,8 +37,8 @@ export const HomePage = () => {
                             passHref
                         >
                             <div>
-                                <h3>{mix.title}</h3>
-                                <p>{mix.subtitle}</p>
+                                <h3 className={styles['quick-title']}>{mix.title}</h3>
+                                <span className={styles['quick-subtitle']}>{mix.author}</span>
                             </div>
                         </Link>
                     ))}
@@ -56,8 +61,8 @@ export const HomePage = () => {
                                 {String(index + 1).padStart(2, '0')}
                             </span>
                             <div>
-                                <h3>{item.title}</h3>
-                                <p>{item.listeners}</p>
+                                <h3 className={styles['trend-title']}>{item.title}</h3>
+                                <span className={styles['trend-subtitle']}>{item.author}</span>
                             </div>
                         </Link>
                     ))}

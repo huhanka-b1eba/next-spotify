@@ -6,4 +6,5 @@ export interface Playlist {
     cover: string
     description: string
     tracks: Track[]
+    author: string
 }

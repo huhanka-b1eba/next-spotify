@@ -15,9 +15,21 @@ export interface DeezerTrack {
 export interface DeezerPlaylist {
     id: number
     title: string
-    description: string
-    picture_medium: string
-    tracks: {
+    description?: string
+    picture_medium?: string
+    creator?: {
+        name: string
+    }
+    user?: {
+        name: string
+    }
+    tracks?: {
         data: DeezerTrack[]
     }
+}
+
+export interface DeezerSearchResponse<T> {
+    data: T[]
+    total: number
+    next?: string
 }

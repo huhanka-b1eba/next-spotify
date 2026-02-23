@@ -6,7 +6,7 @@ import ButtonListen from '@/shared/ui/buttonListen/ui/ButtonListen'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
 import { TrackList } from '@/widgets/track-list'
 import { useQuery } from '@tanstack/react-query'
-import { getPlaylist } from '@/shared/api/'
+import getPlaylist from '@/entities/playlist/api/getPlaylist'
 
 interface PlaylistPageProps {
     id: string
