@@ -9,7 +9,8 @@
         "lint": "eslint",
         "prepare": "husky",
         "format": "prettier --write .",
-        "lint:styles": "stylelint \"**/*.scss\""
+        "lint:styles": "stylelint \"**/*.scss\"",
+        "check": "prettier --write . eslint . && stylelint \"**/*.scss\""
     },
     "lint-staged": {
         "*.{ts,tsx}": [

@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { Clock3 } from 'lucide-react'
 import styles from './PlaylistPage.module.scss'
 import ButtonListen from '@/shared/ui/buttonListen/ui/ButtonListen'
 import { tracksMock } from '@/entities/track/model/mock'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
+import { TrackList } from '@/widgets/track-list'
 
 interface PlaylistPageProps {
     id: string
@@ -31,28 +31,7 @@ const PlaylistPage = ({ id }: PlaylistPageProps) => {
 
             <section className={styles.section} aria-labelledby="track-list-title">
                 <h2 id="track-list-title">Список треков</h2>
-                <div className={styles.table}>
-                    <div className={styles.head} role="row">
-                        <span>#</span>
-                        <span>Название</span>
-                        <span>Альбом</span>
-                        <span className={styles['duration-icon']} aria-label="Длительность">
-                            <Clock3 size={14} />
-                        </span>
-                    </div>
-
-                    {tracksMock.map((track, index) => (
-                        <article key={track.id} className={styles.row}>
-                            <span className={styles.index}>{index + 1}</span>
-                            <div className={styles.track}>
-                                <h3>{track.title}</h3>
-                                <p>{track.artist}</p>
-                            </div>
-                            <p className={styles.album}>{track.album}</p>
-                            <span className={styles.duration}>{track.duration}</span>
-                        </article>
-                    ))}
-                </div>
+                <TrackList trackData={tracksMock} />
             </section>
         </div>
     )
