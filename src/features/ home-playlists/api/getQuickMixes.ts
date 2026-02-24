@@ -1,16 +1,11 @@
-import { api, DeezerPlaylist } from '@/shared/api'
-import type { DeezerSearchResponse } from '@/shared/api/deezer/types'
-import { mapDeezerPlaylist } from '@/entities/playlist/model/mapper'
-import { Playlist } from '@/entities/playlist/model/type'
+import { PlaylistCard } from '@/entities/playlist/model/type'
 
-export const getQuickMixes = async (): Promise<Playlist[]> => {
-    const { data } = await api.get<DeezerSearchResponse<DeezerPlaylist>>(
-        '/search/playlist?q=pop&limit=4',
-    )
+export const getQuickMixes = async (): Promise<PlaylistCard[]> => {
+    const resp = await fetch('/api/deezer/search/playlist?q=pop&limit=4')
 
-    const playlistDetails = await Promise.all(
-        data.data.map(({ id }) => api.get<DeezerPlaylist>(`/playlist/${id}`)),
-    )
+    if (!resp.ok) {
+        throw new Error('Ошибка получения миксов')
+    }
 
-    return playlistDetails.map(({ data: playlist }) => mapDeezerPlaylist(playlist))
+    return resp.json()
 }
