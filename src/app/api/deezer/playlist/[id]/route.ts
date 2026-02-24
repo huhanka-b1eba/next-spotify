@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 import { getPlaylistService } from '@/shared/server/deezer'
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
+export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const data = await getPlaylistService(params.id)
+        const { id } = await params
+        const data = await getPlaylistService(id)
 
         return NextResponse.json(data)
     } catch (error) {
