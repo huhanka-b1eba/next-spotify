@@ -33,3 +33,12 @@ export interface DeezerSearchResponse<T> {
     total: number
     next?: string
 }
+
+export interface DeezerPlaylistSearchItem {
+    id: number
+    title: string
+    picture_medium: string
+    user: {
+        name: string
+    }
+}

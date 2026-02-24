@@ -8,3 +8,10 @@ export interface Playlist {
     tracks: Track[]
     author: string
 }
+
+export interface PlaylistCard {
+    id: number
+    title: string
+    cover: string
+    author: string
+}

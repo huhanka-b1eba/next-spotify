@@ -3,11 +3,11 @@ import { getDayPhrase } from '@/shared/lib/dayPhrase'
 import Link from 'next/link'
 import ButtonListen from '@/shared/ui/buttonListen/ui/ButtonListen'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
-import { Playlist } from '@/entities/playlist/model/type'
+import { Playlist, PlaylistCard } from '@/entities/playlist/model/type'
 
 interface HomePageProps {
-    quickMixes: Playlist[]
-    trending: Playlist[]
+    quickMixes: PlaylistCard[]
+    trending: PlaylistCard[]
 }
 
 export const HomePage = ({ quickMixes, trending }: HomePageProps) => {

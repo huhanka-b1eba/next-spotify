@@ -2,13 +2,14 @@ import { PlaylistPage } from '@/pages/playlist'
 import { Metadata } from 'next'
 
 interface PageProps {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { id } = await params
     return {
-        title: `Плейлист ${params.id} | Spotify`,
-        description: `Прослушивание плейлиста ${params.id}`,
+        title: `Плейлист ${id} | Spotify`,
+        description: `Прослушивание плейлиста ${id}`,
     }
 }
 

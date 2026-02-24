@@ -1,7 +1,6 @@
 import { HomePage } from '@/pages/home'
 import { Metadata } from 'next'
-import { getQuickMixes } from '@/features/ home-playlists/api/getQuickMixes'
-import { getTrending } from '@/features/ home-playlists/api/getTrending'
+import { getQuickMixesService, getTrendingService } from '@/shared/server/deezer'
 
 export const metadata: Metadata = {
     title: 'Spotify',
@@ -9,7 +8,10 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-    const [quickMixes, trending] = await Promise.all([getQuickMixes(), getTrending()])
+    const [quickMixes, trending] = await Promise.all([
+        getQuickMixesService('pop', 4),
+        getTrendingService(4),
+    ])
 
     return <HomePage quickMixes={quickMixes} trending={trending} />
 }

@@ -22,6 +22,8 @@ const PlaylistPage = ({ id }: PlaylistPageProps) => {
         queryFn: () => getPlaylist(id),
     })
 
+    console.log('ID: ' + id)
+
     if (isLoading) return <div>Loading...</div>
     if (!id || isError || !playlist) return notFound()
 
