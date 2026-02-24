@@ -1,7 +1,7 @@
 import { HomePage } from '@/pages/home'
 import { Metadata } from 'next'
-import { getQuickMixes } from '@/features/ home-playlists/api/getQuickMixes'
-import { getTrending } from '@/features/ home-playlists/api/getTrending'
+import { getQuickMixesClient } from '@/features/ home-playlists/api/getQuickMixes.client'
+import { getTrendingClient } from '@/features/ home-playlists/api/getTrending.client'
 
 export const metadata: Metadata = {
     title: 'Spotify',
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-    const [quickMixes, trending] = await Promise.all([getQuickMixes(), getTrending()])
+    const [quickMixes, trending] = await Promise.all([getQuickMixesClient(), getTrendingClient()])
 
     return <HomePage quickMixes={quickMixes} trending={trending} />
 }
