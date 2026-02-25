@@ -4,8 +4,11 @@ import type {
     DeezerPlaylist,
     DeezerPlaylistSearchItem,
     DeezerSearchResponse,
+    DeezerTrack,
 } from '@/shared/api/deezer/types'
 import type { Playlist, PlaylistCard } from '@/entities/playlist/model/type'
+import { mapDeezerTrack } from '@/entities/track/model/mapper'
+import { Track } from '@/entities/track/model/type'
 
 interface DeezerChartResponse {
     playlists: {
@@ -55,4 +58,37 @@ export const getQuickMixesService = async (
     const data: DeezerSearchResponse<DeezerPlaylistSearchItem> = await res.json()
 
     return data.data.slice(0, limit).map(mapDeezerPlaylistCard)
+}
+
+export const searchTracksService = async (query: string, limit: number): Promise<Track[]> => {
+    const res = await fetch(
+        `https://api.deezer.com/search?q=${encodeURIComponent(query)}&limit=${limit}`,
+        { next: { revalidate: 30 } },
+    )
+
+    if (!res.ok) {
+        throw new Error('Failed to search tracks')
+    }
+
+    const data: DeezerSearchResponse<DeezerTrack> = await res.json()
+
+    return data.data.map(mapDeezerTrack)
+}
+
+export const searchPlaylistsService = async (
+    query: string,
+    limit: number,
+): Promise<PlaylistCard[]> => {
+    const res = await fetch(
+        `https://api.deezer.com/search/playlist?q=${encodeURIComponent(query)}&limit=${limit}`,
+        { next: { revalidate: 30 } },
+    )
+
+    if (!res.ok) {
+        throw new Error('Failed to search playlists')
+    }
+
+    const data: DeezerSearchResponse<DeezerPlaylistSearchItem> = await res.json()
+
+    return data.data.map(mapDeezerPlaylistCard)
 }

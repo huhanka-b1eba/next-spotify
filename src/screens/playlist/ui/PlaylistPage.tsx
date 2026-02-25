@@ -2,7 +2,7 @@
 
 import { notFound } from 'next/navigation'
 import styles from './PlaylistPage.module.scss'
-import ButtonListen from '@/shared/ui/buttonListen/ui/ButtonListen'
+import ButtonListen from '@/shared/ui/button-listen/ui/ButtonListen'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
 import { TrackList } from '@/widgets/track-list'
 import { useQuery } from '@tanstack/react-query'

@@ -1,4 +1,4 @@
-import { HomePage } from '@/pages/home'
+import { HomePage } from '@/screens/home'
 import { Metadata } from 'next'
 import { getQuickMixesService, getTrendingService } from '@/shared/server/deezer'
 

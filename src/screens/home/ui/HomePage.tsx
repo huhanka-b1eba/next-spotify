@@ -1,9 +1,9 @@
 import styles from './HomePage.module.scss'
 import { getDayPhrase } from '@/shared/lib/dayPhrase'
 import Link from 'next/link'
-import ButtonListen from '@/shared/ui/buttonListen/ui/ButtonListen'
+import ButtonListen from '@/shared/ui/button-listen/ui/ButtonListen'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
-import { Playlist, PlaylistCard } from '@/entities/playlist/model/type'
+import { PlaylistCard } from '@/entities/playlist/model/type'
 
 interface HomePageProps {
     quickMixes: PlaylistCard[]
