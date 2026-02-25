@@ -1,4 +1,4 @@
-import { PlaylistPage } from '@/pages/playlist'
+import { PlaylistPage } from '@/screens/playlist'
 import { Metadata } from 'next'
 
 interface PageProps {

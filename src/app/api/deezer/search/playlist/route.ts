@@ -12,6 +12,6 @@ export async function GET(req: Request) {
 
         return NextResponse.json(data)
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to fetch playlists' }, { status: 500 })
+        return NextResponse.json({ error: 'Failed to fetch playlists ' + error }, { status: 500 })
     }
 }
