@@ -1,8 +1,11 @@
+'use client'
+
 import React from 'react'
 import {
     Bookmark,
     Cast,
     ListMusic,
+    Pause,
     Play,
     Repeat,
     Shuffle,
@@ -11,15 +14,18 @@ import {
     Volume2,
 } from 'lucide-react'
 import styles from './PlayerBar.module.scss'
+import { usePlayerStore } from '@/entities/player/model/player.store'
 
 const PlayerBar = () => {
+    const { currentTrack, togglePlay, isPlaying } = usePlayerStore()
+
     return (
         <aside className={styles['player-bar']}>
             <div className={styles.section}>
                 <div className={styles['track-cover']} />
                 <div className={styles['track-meta']}>
-                    <span className={styles['track-title']}>Blinding Lights</span>
-                    <span className={styles['track-artist']}>The Weeknd</span>
+                    <span className={styles['track-title']}>{currentTrack?.title}</span>
+                    <span className={styles['track-artist']}>{currentTrack?.artist}</span>
                 </div>
                 <button
                     className={styles['icon-button']}
@@ -49,8 +55,9 @@ const PlayerBar = () => {
                         className={styles['play-button']}
                         type="button"
                         aria-label="Воспроизвести"
+                        onClick={() => togglePlay()}
                     >
-                        <Play />
+                        {isPlaying ? <Pause /> : <Play />}
                     </button>
                     <button
                         className={styles['control-button']}
@@ -68,7 +75,7 @@ const PlayerBar = () => {
                     <div className={styles['progress-bar']}>
                         <span className={styles['progress-fill']} />
                     </div>
-                    <span className={styles['time-label']}>3:20</span>
+                    <span className={styles['time-label']}>{currentTrack?.duration}</span>
                 </div>
             </div>
             <div className={styles.extras}>

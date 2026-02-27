@@ -1,9 +1,14 @@
+'use client'
+
 import React from 'react'
 import { Clock3 } from 'lucide-react'
 import { Track } from '@/entities/track/model/type'
 import styles from './TrackList.module.scss'
+import { usePlayerStore } from '@/entities/player/model/player.store'
 
 const TrackList = ({ trackData }: { trackData: Track[] }) => {
+    const setTrack = usePlayerStore((s) => s.setTrack)
+
     return (
         <div className={styles.table}>
             <div className={styles.head} role="row">
@@ -16,7 +21,7 @@ const TrackList = ({ trackData }: { trackData: Track[] }) => {
             </div>
 
             {trackData.map((track, index) => (
-                <article key={track.id} className={styles.row}>
+                <article key={track.id} className={styles.row} onClick={() => setTrack(track)}>
                     <span className={styles.index}>{index + 1}</span>
                     <div className={styles.track}>
                         <h3>{track.title}</h3>
