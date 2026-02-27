@@ -9,24 +9,9 @@ import { InputSearch } from '@/shared/ui/input-search'
 import { useQuery } from '@tanstack/react-query'
 import { search } from '@/entities/search/api/search.client'
 import { useDebounce } from '@/shared/hooks/useDebounce'
-
-type SearchType = 'all' | 'playlist' | 'track'
-type Genre = 'all' | 'pop' | 'rock' | 'electro' | 'hiphop' | 'indie'
-
-const genres: { id: Genre; label: string }[] = [
-    { id: 'all', label: 'Все' },
-    { id: 'pop', label: 'Pop' },
-    { id: 'rock', label: 'Rock' },
-    { id: 'electro', label: 'Electronic' },
-    { id: 'hiphop', label: 'Hip-Hop' },
-    { id: 'indie', label: 'Indie' },
-]
-
-const searchTypes: { id: SearchType; label: string }[] = [
-    { id: 'all', label: 'Все' },
-    { id: 'playlist', label: 'Плейлисты' },
-    { id: 'track', label: 'Треки' },
-]
+import { TrackList } from '@/widgets/track-list'
+import { SearchFilters } from '@/features/search-filters'
+import { Genre, SearchType } from '@/features/search-filters/model/types'
 
 const SearchPage = () => {
     const [query, setQuery] = useState('')
@@ -48,6 +33,10 @@ const SearchPage = () => {
 
     const hasResults = (showPlaylists && playlists.length > 0) || (showTracks && tracks.length > 0)
 
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
     return (
         <div className={styles.page}>
             <div className={styles.backdrop} aria-hidden />
@@ -58,35 +47,12 @@ const SearchPage = () => {
                 <InputSearch value={query} onChange={setQuery} />
             </section>
 
-            <section className={styles.panel} aria-label="search controls">
-                <div className={styles.chips} role="tablist" aria-label="Filter by type">
-                    {searchTypes.map((type) => (
-                        <button
-                            key={type.id}
-                            className={styles.chip}
-                            data-active={activeType === type.id}
-                            onClick={() => setActiveType(type.id)}
-                            type="button"
-                        >
-                            {type.label}
-                        </button>
-                    ))}
-                </div>
-
-                <div className={styles.chips} role="tablist" aria-label="Filter by genre">
-                    {genres.map((genre) => (
-                        <button
-                            key={genre.id}
-                            className={styles.chip}
-                            data-active={activeGenre === genre.id}
-                            onClick={() => setActiveGenre(genre.id)}
-                            type="button"
-                        >
-                            {genre.label}
-                        </button>
-                    ))}
-                </div>
-            </section>
+            <SearchFilters
+                activeGenre={activeGenre}
+                activeType={activeType}
+                onGenreChange={setActiveGenre}
+                onTypeChange={setActiveType}
+            />
 
             {!hasResults && (
                 <section className={styles.empty}>
@@ -126,20 +92,7 @@ const SearchPage = () => {
                         <h2 id="track-search-title">Треки</h2>
                     </div>
 
-                    <div className={styles['track-list']}>
-                        {tracks.map((track, index) => (
-                            <article key={track.id} className={styles.track}>
-                                <span className={styles.rank}>
-                                    {String(index + 1).padStart(2, '0')}
-                                </span>
-                                <div className={styles['track-meta']}>
-                                    <h3>{track.title}</h3>
-                                    <p>{track.artist}</p>
-                                </div>
-                                <span className={styles.duration}>{track.duration}</span>
-                            </article>
-                        ))}
-                    </div>
+                    <TrackList trackData={tracks} />
                 </section>
             )}
         </div>

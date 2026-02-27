@@ -1,28 +1,29 @@
 'use client'
 
 import React from 'react'
-import { Clock3 } from 'lucide-react'
 import { Track } from '@/entities/track/model/type'
 import styles from './TrackList.module.scss'
 import { usePlayerStore } from '@/entities/player/model/player.store'
+import Image from 'next/image'
 
 const TrackList = ({ trackData }: { trackData: Track[] }) => {
     const setTrack = usePlayerStore((s) => s.setTrack)
 
     return (
         <div className={styles.table}>
-            <div className={styles.head} role="row">
-                <span>#</span>
-                <span>Название</span>
-                <span>Альбом</span>
-                <span className={styles['duration-icon']} aria-label="Длительность">
-                    <Clock3 size={14} />
-                </span>
-            </div>
-
-            {trackData.map((track, index) => (
+            {trackData.map((track) => (
                 <article key={track.id} className={styles.row} onClick={() => setTrack(track)}>
-                    <span className={styles.index}>{index + 1}</span>
+                    <div className={styles.cover}>
+                        {track?.cover && (
+                            <Image
+                                className={styles['track-image']}
+                                src={track.cover}
+                                alt={track.title ?? 'Обложка'}
+                                width={50}
+                                height={50}
+                            />
+                        )}
+                    </div>
                     <div className={styles.track}>
                         <h3>{track.title}</h3>
                         <p>{track.artist}</p>
