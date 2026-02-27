@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { Sparkles } from 'lucide-react'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
 import styles from './SearchPage.module.scss'
@@ -12,6 +11,7 @@ import { useDebounce } from '@/shared/hooks/useDebounce'
 import { TrackList } from '@/widgets/track-list'
 import { SearchFilters } from '@/features/search-filters'
 import { Genre, SearchType } from '@/features/search-filters/model/types'
+import { SearchPlaylists } from '@/widgets/search-playlists'
 
 const SearchPage = () => {
     const [query, setQuery] = useState('')
@@ -67,22 +67,7 @@ const SearchPage = () => {
                         <h2 id="playlist-search-title">Плейлисты</h2>
                     </div>
 
-                    <div className={styles.grid}>
-                        {playlists.map((playlist) => (
-                            <Link
-                                key={playlist.id}
-                                className={styles.card}
-                                href={`/playlist/${playlist.id}`}
-                            >
-                                <div
-                                    className={styles.cover}
-                                    style={{ background: playlist.cover }}
-                                />
-                                <h3>{playlist.title}</h3>
-                                <p>{playlist.author}</p>
-                            </Link>
-                        ))}
-                    </div>
+                    <SearchPlaylists playlists={playlists} />
                 </section>
             )}
 
