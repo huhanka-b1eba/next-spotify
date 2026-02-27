@@ -8,6 +8,7 @@ import { TrackList } from '@/widgets/track-list'
 import { useQuery } from '@tanstack/react-query'
 import playlistClient from '@/shared/api/client/playlist.client'
 import Image from 'next/image'
+import { PlaylistPageSkeleton } from '@/shared/ui/playlist-page-skeleton'
 
 interface PlaylistPageProps {
     id: string
@@ -23,13 +24,14 @@ const PlaylistPage = ({ id }: PlaylistPageProps) => {
         queryFn: () => playlistClient(id),
     })
 
-    if (isLoading) return <div>Loading...</div>
+    if (isLoading) return <PlaylistPageSkeleton />
     if (!id || isError || !playlist) return notFound()
 
     return (
         <div className={styles.page}>
             <section className={styles.hero}>
                 <div className={styles.cover} aria-hidden>
+                    <div className={styles['image-fallback']} aria-hidden />
                     {playlist?.cover && (
                         <Image
                             className={styles['playlist-image']}
@@ -37,6 +39,9 @@ const PlaylistPage = ({ id }: PlaylistPageProps) => {
                             alt={playlist?.description ?? 'Обложка плейлиста'}
                             width={200}
                             height={200}
+                            onError={(event) => {
+                                event.currentTarget.style.display = 'none'
+                            }}
                         />
                     )}
                 </div>

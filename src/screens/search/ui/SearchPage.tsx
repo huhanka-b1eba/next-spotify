@@ -8,10 +8,10 @@ import { InputSearch } from '@/shared/ui/input-search'
 import { useQuery } from '@tanstack/react-query'
 import { search } from '@/shared/api/client/search.client'
 import { useDebounce } from '@/shared/hooks/useDebounce'
-import { TrackList } from '@/widgets/track-list'
+import { TrackList, TrackListSkeleton } from '@/widgets/track-list'
 import { SearchFilters } from '@/features/search-filters'
 import { Genre, SearchType } from '@/features/search-filters/model/types'
-import { SearchPlaylists } from '@/widgets/search-playlists'
+import { SearchPlaylists, SearchPlaylistsSkeleton } from '@/widgets/search-playlists'
 
 const SearchPage = () => {
     const [query, setQuery] = useState('')
@@ -19,7 +19,7 @@ const SearchPage = () => {
     const [activeType, setActiveType] = useState<SearchType>('all')
     const debouncedQuery = useDebounce(query, 300)
 
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, isFetching } = useQuery({
         queryKey: ['search', debouncedQuery],
         queryFn: () => search(debouncedQuery),
         enabled: debouncedQuery.length > 1,
@@ -31,11 +31,8 @@ const SearchPage = () => {
     const showPlaylists = activeType === 'all' || activeType === 'playlist'
     const showTracks = activeType === 'all' || activeType === 'track'
 
+    const isSearching = debouncedQuery.length > 1 && (isLoading || isFetching)
     const hasResults = (showPlaylists && playlists.length > 0) || (showTracks && tracks.length > 0)
-
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
 
     return (
         <div className={styles.page}>
@@ -54,30 +51,38 @@ const SearchPage = () => {
                 onTypeChange={setActiveType}
             />
 
-            {!hasResults && (
+            {!isSearching && !hasResults && (
                 <section className={styles.empty}>
                     <Sparkles size={16} />
                     По текущему фильтру ничего не найдено
                 </section>
             )}
 
-            {showPlaylists && playlists.length > 0 && (
+            {showPlaylists && (isSearching || playlists.length > 0) && (
                 <section className={styles.section} aria-labelledby="playlist-search-title">
                     <div className={styles['section-head']}>
                         <h2 id="playlist-search-title">Плейлисты</h2>
                     </div>
 
-                    <SearchPlaylists playlists={playlists} />
+                    {isSearching ? (
+                        <SearchPlaylistsSkeleton items={7} />
+                    ) : (
+                        <SearchPlaylists playlists={playlists} />
+                    )}
                 </section>
             )}
 
-            {showTracks && tracks.length > 0 && (
+            {showTracks && (isSearching || tracks.length > 0) && (
                 <section className={styles.section} aria-labelledby="track-search-title">
                     <div className={styles['section-head']}>
                         <h2 id="track-search-title">Треки</h2>
                     </div>
 
-                    <TrackList trackData={tracks} />
+                    {isSearching ? (
+                        <TrackListSkeleton rows={6} />
+                    ) : (
+                        <TrackList trackData={tracks} />
+                    )}
                 </section>
             )}
         </div>

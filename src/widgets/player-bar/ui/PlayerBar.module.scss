@@ -20,13 +20,26 @@
     background: var(--color-muted);
     border-radius: 6px;
     height: 52px;
+    position: relative;
+    overflow: hidden;
     width: 52px;
 }
 
 .track-image {
     border-radius: 6px;
     height: 52px;
+    position: relative;
+    z-index: 1;
     width: 52px;
+}
+
+.image-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(145deg, #1f1f1f 0%, #2b2b2b 100%);
 }
 
 .track-meta {

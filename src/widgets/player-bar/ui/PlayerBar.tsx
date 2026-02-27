@@ -88,6 +88,7 @@ const PlayerBar = () => {
                 <audio ref={audioRef} />
                 <div className={styles.section}>
                     <div className={styles['track-cover']}>
+                        <div className={styles['image-fallback']} aria-hidden />
                         {currentTrack?.cover && (
                             <Image
                                 className={styles['track-image']}
@@ -96,6 +97,9 @@ const PlayerBar = () => {
                                 width={52}
                                 height={52}
                                 unoptimized
+                                onError={(event) => {
+                                    event.currentTarget.style.display = 'none'
+                                }}
                             />
                         )}
                     </div>
