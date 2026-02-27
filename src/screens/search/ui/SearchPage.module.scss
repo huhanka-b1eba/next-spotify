@@ -30,44 +30,6 @@
     color: var(--color-muted);
 }
 
-.panel {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: 12px;
-    margin-top: 22px;
-}
-
-.chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.chip {
-    border: 1px solid var(--color-border);
-    background: var(--color-bg);
-    color: var(--color-muted);
-    border-radius: 999px;
-    padding: 7px 12px;
-    font-size: 13px;
-    cursor: pointer;
-    transition:
-        border-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.chip:hover {
-    color: var(--color-text);
-    transform: translateY(-1px);
-}
-
-.chip[data-active='true'] {
-    border-color: var(--color-muted);
-    font-weight: 700;
-}
-
 .section {
     position: relative;
     z-index: 1;
@@ -89,44 +51,6 @@
 .section-head span {
     color: var(--color-muted);
     font-size: 13px;
-}
-
-.grid {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.card {
-    display: block;
-    text-decoration: none;
-    color: var(--color-text);
-    border-radius: 5px;
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-}
-
-.cover {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.card h3 {
-    margin: 0;
-    font-size: 16px;
-}
-
-.card p {
-    margin: 5px 0 0;
-    font-size: 13px;
-    color: var(--color-muted);
 }
 
 .track-list {

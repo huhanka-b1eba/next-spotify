@@ -45,6 +45,10 @@
     font-size: 13px;
 }
 
+.track {
+    margin-left: 20px;
+}
+
 .track h3 {
     color: #fff;
     font-size: 15px;
@@ -55,6 +59,10 @@
     color: var(--color-muted);
     font-size: 13px;
     margin: 4px 0 0;
+}
+
+.track-image {
+    border-radius: 10px;
 }
 
 .album,

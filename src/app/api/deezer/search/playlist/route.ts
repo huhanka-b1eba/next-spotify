@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getQuickMixesService } from '@/shared/server/deezer'
+import { getQuickMixesService } from '@/shared/api/server/deezer'
 
 export async function GET(req: Request) {
     try {

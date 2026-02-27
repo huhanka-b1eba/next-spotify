@@ -1,7 +1,6 @@
 import { Playlist, PlaylistCard } from '@/entities/playlist/model/type'
 import { mapDeezerTrack } from '@/entities/track/model/mapper'
 import { DeezerPlaylist } from '@/shared/api'
-import { getPlaylistAuthor } from '@/features/ home-playlists/api/getPlaylistAuthor'
 import { DeezerPlaylistSearchItem } from '@/shared/api/deezer/types'
 
 export const mapDeezerPlaylist = (playlist: DeezerPlaylist): Playlist => ({
@@ -10,7 +9,7 @@ export const mapDeezerPlaylist = (playlist: DeezerPlaylist): Playlist => ({
     description: playlist.description ?? '',
     cover: playlist.picture_medium ?? '',
     tracks: playlist.tracks?.data.map(mapDeezerTrack) ?? [],
-    author: getPlaylistAuthor(playlist),
+    author: playlist.creator?.name ?? 'Неизвестный автор',
 })
 
 export const mapDeezerPlaylistCard = (playlist: DeezerPlaylistSearchItem): PlaylistCard => ({

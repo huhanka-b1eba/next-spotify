@@ -23,6 +23,12 @@
     width: 52px;
 }
 
+.track-image {
+    border-radius: 6px;
+    height: 52px;
+    width: 52px;
+}
+
 .track-meta {
     display: flex;
     flex-direction: column;
@@ -143,7 +149,7 @@
     border-radius: 999px;
     display: block;
     height: 100%;
-    width: 35%;
+    width: 0;
 }
 
 .extras {
