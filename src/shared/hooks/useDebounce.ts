@@ -6,12 +6,8 @@ export const useDebounce = <T>(value: T, delay: number): T => {
     useEffect(() => {
         const timer = setTimeout(() => setDebounceValue(value), delay)
 
-        return clearTimeout(timer)
+        return () => clearTimeout(timer)
     }, [value, delay])
 
     return debounceValue
-}
-
-export const useThrottle = <T>(value: T, delay: number): T => {
-    const [throttleValue, setT]
 }
