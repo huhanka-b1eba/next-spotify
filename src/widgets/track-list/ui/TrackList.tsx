@@ -14,6 +14,7 @@ const TrackList = ({ trackData }: { trackData: Track[] }) => {
             {trackData.map((track) => (
                 <article key={track.id} className={styles.row} onClick={() => setTrack(track)}>
                     <div className={styles.cover}>
+                        <div className={styles['image-fallback']} aria-hidden />
                         {track?.cover && (
                             <Image
                                 className={styles['track-image']}
@@ -21,6 +22,9 @@ const TrackList = ({ trackData }: { trackData: Track[] }) => {
                                 alt={track.title ?? 'Обложка'}
                                 width={50}
                                 height={50}
+                                onError={(event) => {
+                                    event.currentTarget.style.display = 'none'
+                                }}
                             />
                         )}
                     </div>

@@ -10,6 +10,7 @@ const SearchPlaylists = ({ playlists }: { playlists: PlaylistCard[] }) => {
             {playlists.map((playlist) => (
                 <Link key={playlist.id} className={styles.card} href={`/playlist/${playlist.id}`}>
                     <div className={styles.cover}>
+                        <div className={styles['image-fallback']} aria-hidden />
                         {playlist.cover && (
                             <Image
                                 className={styles['playlist-image']}
@@ -17,6 +18,9 @@ const SearchPlaylists = ({ playlists }: { playlists: PlaylistCard[] }) => {
                                 alt={playlist.title ?? 'Обложка плейлиста'}
                                 width={250}
                                 height={250}
+                                onError={(event) => {
+                                    event.currentTarget.style.display = 'none'
+                                }}
                             />
                         )}
                     </div>
