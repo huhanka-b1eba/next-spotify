@@ -15,14 +15,28 @@ import {
 } from 'lucide-react'
 import styles from './PlayerBar.module.scss'
 import { usePlayerStore } from '@/entities/player/model/player.store'
+import Image from 'next/image'
 
 const PlayerBar = () => {
     const { currentTrack, togglePlay, isPlaying } = usePlayerStore()
 
+    console.log(currentTrack)
+
     return (
         <aside className={styles['player-bar']}>
             <div className={styles.section}>
-                <div className={styles['track-cover']} />
+                <div className={styles['track-cover']}>
+                    {currentTrack?.cover && (
+                        <Image
+                            className={styles['track-image']}
+                            src={currentTrack.cover}
+                            alt={currentTrack.title ?? 'Обложка трека'}
+                            width={52}
+                            height={52}
+                            unoptimized
+                        />
+                    )}
+                </div>
                 <div className={styles['track-meta']}>
                     <span className={styles['track-title']}>{currentTrack?.title}</span>
                     <span className={styles['track-artist']}>{currentTrack?.artist}</span>

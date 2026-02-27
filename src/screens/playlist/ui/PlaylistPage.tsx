@@ -7,6 +7,7 @@ import Kicker from '@/shared/ui/kicker/ui/Kicker'
 import { TrackList } from '@/widgets/track-list'
 import { useQuery } from '@tanstack/react-query'
 import getPlaylist from '@/entities/playlist/api/getPlaylist'
+import Image from 'next/image'
 
 interface PlaylistPageProps {
     id: string
@@ -22,15 +23,23 @@ const PlaylistPage = ({ id }: PlaylistPageProps) => {
         queryFn: () => getPlaylist(id),
     })
 
-    console.log('ID: ' + id)
-
     if (isLoading) return <div>Loading...</div>
     if (!id || isError || !playlist) return notFound()
 
     return (
         <div className={styles.page}>
             <section className={styles.hero}>
-                <div className={styles.cover} aria-hidden />
+                <div className={styles.cover} aria-hidden>
+                    {playlist?.cover && (
+                        <Image
+                            className={styles['playlist-image']}
+                            src={playlist?.cover}
+                            alt={playlist?.description ?? 'Обложка плейлиста'}
+                            width={200}
+                            height={200}
+                        />
+                    )}
+                </div>
                 <div className={styles.meta}>
                     <Kicker text="Плейлист" />
                     <h1>{playlist?.title}</h1>
