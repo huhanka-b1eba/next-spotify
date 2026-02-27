@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getTrendingService } from '@/shared/server/deezer'
+import { getTrendingService } from '@/shared/api/server/deezer'
 
 export async function GET(req: Request) {
     try {

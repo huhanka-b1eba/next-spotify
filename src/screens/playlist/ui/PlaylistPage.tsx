@@ -6,7 +6,7 @@ import ButtonListen from '@/shared/ui/button-listen/ui/ButtonListen'
 import Kicker from '@/shared/ui/kicker/ui/Kicker'
 import { TrackList } from '@/widgets/track-list'
 import { useQuery } from '@tanstack/react-query'
-import getPlaylist from '@/entities/playlist/api/getPlaylist'
+import playlistClient from '@/shared/api/client/playlist.client'
 import Image from 'next/image'
 
 interface PlaylistPageProps {
@@ -20,7 +20,7 @@ const PlaylistPage = ({ id }: PlaylistPageProps) => {
         isError,
     } = useQuery({
         queryKey: ['playlist', id],
-        queryFn: () => getPlaylist(id),
+        queryFn: () => playlistClient(id),
     })
 
     if (isLoading) return <div>Loading...</div>

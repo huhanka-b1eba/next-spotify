@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { searchTracksService, searchPlaylistsService } from '@/shared/server/deezer'
+import { searchTracksService, searchPlaylistsService } from '@/shared/api/server/deezer'
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)

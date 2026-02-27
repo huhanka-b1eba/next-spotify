@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getPlaylistService } from '@/shared/server/deezer'
+import { getPlaylistService } from '@/shared/api/server/deezer'
 
 export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
     try {

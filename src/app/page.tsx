@@ -1,6 +1,6 @@
 import { HomePage } from '@/screens/home'
 import { Metadata } from 'next'
-import { getQuickMixesService, getTrendingService } from '@/shared/server/deezer'
+import { getQuickMixesService, getTrendingService } from '@/shared/api/server/deezer'
 
 export const metadata: Metadata = {
     title: 'Spotify',
