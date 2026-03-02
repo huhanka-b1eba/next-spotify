@@ -107,13 +107,6 @@ const PlayerBar = () => {
                         <span className={styles['track-title']}>{currentTrack?.title}</span>
                         <span className={styles['track-artist']}>{currentTrack?.artist}</span>
                     </div>
-                    <button
-                        className={styles['icon-button']}
-                        type="button"
-                        aria-label="Сохранить в медиатеку"
-                    >
-                        <Bookmark />
-                    </button>
                 </div>
                 <div className={styles.controls}>
                     <div className={styles['controls-row']}>
@@ -168,16 +161,6 @@ const PlayerBar = () => {
                     </div>
                 </div>
                 <div className={styles.extras}>
-                    <button
-                        className={styles['icon-button']}
-                        type="button"
-                        aria-label="Устройство вывода"
-                    >
-                        <Cast />
-                    </button>
-                    <button className={styles['icon-button']} type="button" aria-label="Очередь">
-                        <ListMusic />
-                    </button>
                     <div className={styles['volume-row']}>
                         <button
                             className={styles['icon-button']}

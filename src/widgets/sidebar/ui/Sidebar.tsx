@@ -3,8 +3,7 @@
 import React from 'react'
 import styles from './Sidebar.module.scss'
 import Link from 'next/link'
-import { Home, Library, Search } from 'lucide-react'
-import { ProfileSidebar } from '@/widgets/profile-sidebar'
+import { Home, Search } from 'lucide-react'
 import { Logo } from '@/shared/ui/logo'
 import { usePathname } from 'next/navigation'
 
@@ -18,11 +17,6 @@ const sidebarLinks = [
         name: 'Главная',
         icon: Home,
         href: '/',
-    },
-    {
-        name: 'Библиотека',
-        icon: Library,
-        href: '/library',
     },
 ]
 
@@ -51,7 +45,6 @@ const Sidebar = () => {
                     ))}
                 </ul>
             </nav>
-            <ProfileSidebar />
         </aside>
     )
 }
