@@ -1,0 +1,97 @@
+.page {
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100%;
+    padding: 24px 28px 36px;
+}
+
+.hero {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 180px minmax(0, 1fr);
+    margin-bottom: 28px;
+}
+
+.cover {
+    width: 100%;
+}
+
+.skeleton-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+}
+
+.meta {
+    align-self: end;
+}
+
+.skeleton-kicker {
+    width: 90px;
+    height: 14px;
+    margin-bottom: 12px;
+}
+
+.skeleton-title {
+    width: min(520px, 85%);
+    height: 38px;
+}
+
+.skeleton-description {
+    width: min(540px, 95%);
+    height: 14px;
+    margin-top: 12px;
+}
+
+.skeleton-description + .skeleton-description {
+    width: min(420px, 80%);
+    margin-top: 8px;
+}
+
+.actions {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.skeleton-button {
+    width: 120px;
+    height: 36px;
+    border-radius: 999px;
+}
+
+.skeleton-stats {
+    width: 90px;
+    height: 14px;
+}
+
+.section {
+    margin-top: 10px;
+}
+
+.skeleton-section-title {
+    width: 160px;
+    height: 20px;
+    margin-bottom: 14px;
+}
+
+@media (width <= 860px) {
+    .hero {
+        grid-template-columns: 120px minmax(0, 1fr);
+    }
+}
+
+@media (width <= 680px) {
+    .page {
+        padding: 16px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .skeleton-cover {
+        width: min(200px, 70%);
+    }
+}
